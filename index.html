@@ -42,12 +42,21 @@
     <h1>Text to Speech Converter</h1>
     <textarea id="textInput" placeholder="Enter text here..."></textarea>
     <button onclick="speakText()">Speak</button>
+    <button onclick="clearText()">Clear</button>
 
     <script>
         function speakText() {
             const textInput = document.getElementById('textInput').value;
-            let speechObj = new SpeechSynthesisUtterance(textInput);
-            window.speechSynthesis.speak(speechObj);
+            if (textInput.trim() !== '') {
+                let speechObj = new SpeechSynthesisUtterance(textInput);
+                window.speechSynthesis.speak(speechObj);
+            } else {
+                alert("Please enter some text before speaking.");
+            }
+        }
+
+        function clearText() {
+            document.getElementById('textInput').value = '';
         }
     </script>
 </body>
